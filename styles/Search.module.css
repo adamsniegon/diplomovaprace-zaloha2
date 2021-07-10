@@ -1,0 +1,30 @@
+.search{
+    background: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    padding: 0px 0px 0px 20px;
+    position: absolute;
+    right: 0px;
+}
+
+.input{
+    width: 200px;
+    font-size: 14px;
+    padding: 10px;
+    border: none;
+    background: transparent;
+}
+
+.iconWrapper{
+    padding: 10px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.iconWrapper:hover{
+    background: #b1b1b1;
+}

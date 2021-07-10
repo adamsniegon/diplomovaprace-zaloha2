@@ -1,0 +1,10 @@
+.headerWrapper{
+    padding: 20px 30px 0px 30px;
+}
+
+.header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
