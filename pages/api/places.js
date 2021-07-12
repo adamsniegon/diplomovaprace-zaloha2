@@ -1,5 +1,6 @@
 import dbConnect from '../../utils/dbConnect';
 import Place from '../../models/Place';
+import City from '../../models/City';
 
 /**
  * Get all places
@@ -20,6 +21,7 @@ export default async function handler(req, res) {
         data: places
     });
   } catch (error) {
+    console.log(error);
     res.status(404).send({message: "Not found"});    
   }
 }
