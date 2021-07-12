@@ -2,7 +2,14 @@ import Head from 'next/head';
 import Header from '../components/Header';
 import styles from '../styles/Home.module.css';
 
+import axios from 'axios';
+import useSWR from 'swr';
+
+const fetcher = url => axios.get(url).then(res => res.data);
+
 export default function Home() {
+  const {data, error} = useSWR('/api/places', fetcher);
+
   return (
     <div>
       <Head>
@@ -12,6 +19,9 @@ export default function Home() {
       </Head>
       <Header/>
       <h1>Hello World!</h1>
+      {error && <p>failed to load</p>}
+      {!data && <p>loading...</p>} 
+      {data && data.data.map(item => <p key={item._id}>{item.name}</p>)}
     </div>
   )
 }
