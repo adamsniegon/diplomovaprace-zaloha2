@@ -1,0 +1,25 @@
+import dbConnect from '../../utils/dbConnect';
+import Place from '../../models/Place';
+
+/**
+ * Get all places
+ * @param {*} req 
+ * @param {*} res 
+ */
+export default async function handler(req, res) {
+  if (req.method !== 'GET') {
+    return res.status(400).send({message: "Bad request"});
+  }
+
+  await dbConnect();
+  try {
+    const places = await Place.find().populate({path: 'city', select: 'name -_id'});
+    res.send({
+        success: true,
+        count: places.length,
+        data: places
+    });
+  } catch (error) {
+    res.status(404).send({message: "Not found"});    
+  }
+}

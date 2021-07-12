@@ -2,9 +2,6 @@ import Head from 'next/head';
 import Header from '../components/Header';
 import styles from '../styles/Home.module.css';
 
-import dbConnect from '../utils/dbConnect';
-import Place from '../models/Place';
-
 export default function Home() {
   return (
     <div>
@@ -17,26 +14,4 @@ export default function Home() {
       <h1>Hello World!</h1>
     </div>
   )
-}
-
-export async function getStaticProps() {
-  await dbConnect()
-
-  let data;
-  try {
-    data = await Place.find();
-    data = JSON.parse(JSON.stringify(data));
-  } catch (error) {
-    data = [
-      {
-        name: "Something went wrong"
-      }
-    ]
-  }
-
-  return {
-    props: {
-      data
-    }
-  };
 }
