@@ -1,14 +1,22 @@
 import Head from 'next/head';
 import Header from '../components/Header';
 import styles from '../styles/Home.module.css';
+import PlaceCard from '../components/PlaceCard';
 
-import axios from 'axios';
-import useSWR from 'swr';
+import {useEffect} from 'react';
+import { useDispatch } from 'react-redux';
+import {dataFetch} from '../actions'
+import { useSelector } from 'react-redux';
 
-const fetcher = url => axios.get(url).then(res => res.data);
 
 export default function Home() {
-  const {data, error} = useSWR('/api/places', fetcher);
+  const dispatch = useDispatch();
+  const data = useSelector(state => state.data);
+  console.log(data);
+
+  useEffect(() => {
+    dispatch(dataFetch());
+  }, [dispatch]);
 
   return (
     <div>
@@ -18,10 +26,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header/>
-      <h1>Hello World!</h1>
-      {error && <p>failed to load</p>}
-      {!data && <p>loading...</p>} 
-      {data && data.data.map(item => <p key={item._id}>{item.name}</p>)}
+      <PlaceCard/>
     </div>
   )
 }
