@@ -2,48 +2,42 @@ import { combineReducers } from 'redux'
 import * as types from './types'
 
 const initialState = {
-  cities: {},
   places: {},
-  citiesIds: [],
   placesIds: [],
   error: null,
   loading: false
 }
 
-const dataReducer = (state = initialState, action) => {
+const placesReducer = (state = initialState, action) => {
   switch (action.type) {
-    case types.DATA_FETCH_START:
+    case types.PLACES_FETCH_START:
         return {
             ...state,
             loading: true,
             error: null
         }
 
-    case types.DATA_FETCH_SUCCESS:
+    case types.PLACES_FETCH_SUCCESS:
         return {
             ...state,
             loading: false,
-            cities: action.payload.cities,
             places: action.payload.places,
-            citiesIds: action.payload.citiesIds,
             placesIds: action.payload.placesIds
         }
 
-    case types.DATA_FETCH_ERROR:
+    case types.PLACES_FETCH_ERROR:
         return {
             ...state,
             loading: false,
             error: action.payload.error
         }
 
-    case types.DATA_FETCH_REFRESH:
+    case types.PLACES_FETCH_REFRESH:
         return {
             ...state,
             loading: false,
             error: null,
-            cities: {},
             places: {},
-            citiesIds: [],
             placesIds: []
         }
 
@@ -54,7 +48,7 @@ const dataReducer = (state = initialState, action) => {
 
 // COMBINED REDUCERS
 const reducers = {
-  data: dataReducer,
+  places: placesReducer,
 }
 
 export default combineReducers(reducers)

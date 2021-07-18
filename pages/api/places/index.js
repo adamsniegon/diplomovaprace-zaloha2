@@ -1,6 +1,6 @@
-import dbConnect from '../../utils/dbConnect';
-import Place from '../../models/Place';
-import City from '../../models/City';
+import dbConnect from '../../../utils/dbConnect';
+import Place from '../../../models/Place';
+import City from '../../../models/City';
 
 /**
  * Get all places
@@ -14,7 +14,7 @@ export default async function handler(req, res) {
 
   await dbConnect();
   try {
-    const places = await Place.find().populate({path: 'city', select: 'name -_id'});
+    const places = await Place.find();
     res.send({
         success: true,
         count: places.length,

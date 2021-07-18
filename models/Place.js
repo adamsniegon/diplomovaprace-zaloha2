@@ -6,6 +6,10 @@ const PlaceSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    searchName: {
+        type: String,
+        required: true
+    },
     description: {
         type: String,
         required: true
@@ -30,30 +34,10 @@ const PlaceSchema = new mongoose.Schema({
     },
     cityReference: {
         type: Schema.Types.ObjectId,
-        ref: 'places'
+        ref: 'cities'
     }
 }, {
-    timestamps: true,
-    toJSON: {
-        virtuals: true
-    },
-    toObject: {
-        virtuals: true
-    },
-    id: false
+    timestamps: true
 });
-
-PlaceSchema.virtual('city', {
-    ref: 'cities',
-    localField: 'cityReference',
-    foreignField: '_id',
-    justOne: true
- });
-
-PlaceSchema.virtual('reviews', {
-    ref: 'reviews',
-    localField: '_id',
-    foreignField: 'placeReference'
- });
  
  export default mongoose.models.places || mongoose.model('places', PlaceSchema)
