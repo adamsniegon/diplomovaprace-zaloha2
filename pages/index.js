@@ -6,7 +6,8 @@ import ContentWrapper from '../components/ContentWrapper';
 
 import {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {placesFetch} from '../redux/actions';
+import {placesFetch} from '../redux/actions/places';
+import {citiesFetch} from '../redux/actions/cities';
 
 
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
 
   useEffect(() => {
     dispatch(placesFetch());
+    dispatch(citiesFetch());
   }, [dispatch]);
 
   return (

@@ -1,5 +1,4 @@
-import { combineReducers } from 'redux'
-import * as types from './types'
+import * as types from '../types'
 
 const initialState = {
   places: {},
@@ -46,9 +45,4 @@ const placesReducer = (state = initialState, action) => {
   }
 }
 
-// COMBINED REDUCERS
-const reducers = {
-  places: placesReducer,
-}
-
-export default combineReducers(reducers)
+export default placesReducer
