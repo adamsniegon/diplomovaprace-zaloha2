@@ -1,21 +1,19 @@
 import {useSelector} from 'react-redux';
 import Link from 'next/link';
-import styles from '../styles/PlaceCard.module.css';
+import styles from '../styles/CityCard.module.css';
 
-export default function PlaceCard({id}) {
-  const place = useSelector(state => state.places.places[id]);
+export default function CityCard({id}) {
+  const city = useSelector(state => state.cities.cities[id]);
   
   return (
     <div className={styles.card}>
-      {place && (
-        <Link href={'/places/' + place.url}>
+      {city && (
+        <Link href={'/cities/' + city.url}>
           <a className={styles.card__link}>
             <div className="card__image"></div>
             <div className={styles.card__info}>
               <img className={styles.card__icon} src={'/icon-pin.svg'}></img>
-              <p className={styles.card__name}>{place.name}</p>
-              <img className={styles.card__icon} src={'/icon-location.svg'}></img>
-              <p className={styles.card__city}>{place.city.name}</p>
+              <p className={styles.card__name}>{city.name}</p>
             </div>
           </a>
         </Link>
@@ -23,7 +21,7 @@ export default function PlaceCard({id}) {
       <style jsx>{`
         .card__image{
           height: 130px;
-          background: url(${place.image[0].formats.thumbnail.url});
+          background: url(${city.image[0].formats.thumbnail.url});
           background-size: cover;
           background-position: center center;
           border-top-left-radius: 10px;

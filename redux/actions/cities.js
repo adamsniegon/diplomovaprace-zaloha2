@@ -37,7 +37,6 @@ export const citiesFetch = () => async (dispatch) => {
         const {data: cities} = await axios.get(process.env.STRAPI + "/cities");
         const citySchema = new schema.Entity('cities');
         const normalizedData = normalize(cities, [citySchema]);
-        console.log(normalizedData);
         dispatch(citiesFetchSuccess(normalizedData.entities.cities, normalizedData.result));
     } catch (error) {
         dispatch(citiesFetchError(error));
